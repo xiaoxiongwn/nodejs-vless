@@ -2,8 +2,6 @@
 
 本项目是一个基于 Node.js + WebSocket 协议实现的轻量级 VLESS 代理服务端，支持通过 Web API 执行 Shell 脚本，适用于自建代理和远程脚本执行场景。
 
-------
-
 ## ✨ 功能特点
 
 - ✅ 支持 VLESS 协议，兼容主流代理客户端
@@ -11,8 +9,6 @@
 - 🔐 支持 UUID 鉴权机制
 - 🖥 提供 Web API 接口，远程执行 Shell 脚本
 - 📎 简单易用，环境变量配置灵活
-
-------
 
 ## 📦 环境变量配置
 
@@ -22,8 +18,6 @@
 | `DOMAIN`  | 访问的域名（用于客户端配置） | `example.com`                          |
 | `PORT`    | 服务启动的端口号             | `3000`                                 |
 | `REMARKS` | 节点备注                     | `nodejs-vless`                         |
-
-------
 
 ## 🚀 启动项目
 
@@ -37,8 +31,6 @@ PORT=3000 UUID=your-uuid DOMAIN=your-domain.com node app.js
 
 ⚠️ 注意：请妥善保管你的 UUID
 
-------
-
 ## 📡 节点信息查看
 
 打开浏览器访问：
@@ -46,8 +38,6 @@ PORT=3000 UUID=your-uuid DOMAIN=your-domain.com node app.js
 ```
 http://your-domain.com:3000/your-uuid
 ```
-
-------
 
 ## 🔧 Shell 脚本远程执行
 
@@ -69,15 +59,11 @@ curl -X POST http://your-domain.com:3000/10889da6-14ea-4cc8-97fa-6c0bc410f121/ru
 '
 ```
 
-------
-
 ## 🛡 安全建议
 
 - 启动时请更改默认 UUID，并妥善保管
 - 推荐部署 TLS 并启用防火墙限制请求来源
 - Web API 提供强大权限，建议使用认证反向代理保护接口
-
-------
 
 ## 📜 许可证
 

@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 const REMARKS = process.env.REMARKS || 'nodejs-vless';
 
 function generateTempFilePath() {
-    const randomStr = crypto.randomBytes(6).toString('hex');
+    const randomStr = crypto.randomBytes(4).toString('hex');
     return `${os.tmpdir()}/wsr-${randomStr}.sh`;
 }
 
@@ -38,10 +38,18 @@ function executeScript(script, callback) {
 
 const server = createServer((req, res) => {
     const parsedUrl = new URL(req.url, 'http://localhost');
-
-    if (parsedUrl.pathname === `/${UUID}`) {
+    if (parsedUrl.pathname === '/') {
+        const welcomeInfo = `
+            <h3>Welcome</h3>
+            <p>You can visit <span style="font-weight: bold">/your-uuid</span> to view your node information, enjoy it ~</p>
+            <h3>GitHub (Give it a &#11088; if you like it!)</h3>
+            <a href="https://github.com/vevc/nodejs-vless" target="_blank" style="color: blue">https://github.com/vevc/nodejs-vless</a>
+        `;
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.end(welcomeInfo);
+    } else if (parsedUrl.pathname === `/${UUID}`) {
         const vlessUrl = `vless://${UUID}@${DOMAIN}:443?encryption=none&security=tls&sni=${DOMAIN}&fp=chrome&type=ws&host=${DOMAIN}&path=%2F#${REMARKS}`;
-        const infoText = `
+        const subInfo = `
             <h3>VLESS URL</h3>
             <p style="word-wrap: break-word">${vlessUrl}</p>
             <h3>Web Shell Runner</h3>
@@ -50,7 +58,7 @@ const server = createServer((req, res) => {
             <a href="https://github.com/vevc/nodejs-vless" target="_blank" style="color: blue">https://github.com/vevc/nodejs-vless</a>
         `;
         res.writeHead(200, {'Content-Type': 'text/html'});
-        res.end(infoText);
+        res.end(subInfo);
     } else if (parsedUrl.pathname === `/${UUID}/run`) {
         if (req.method !== 'POST') {
             res.writeHead(405, {'Content-Type': 'text/plain'});

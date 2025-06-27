@@ -19,13 +19,12 @@
 | `PORT`    | 服务启动的端口号             | `3000`                                 |
 | `REMARKS` | 节点备注                     | `nodejs-vless`                         |
 
-## 🚀 启动项目
+## ⚡️ 快速部署
 
 ```bash
-# 安装依赖
+wget https://raw.githubusercontent.com/vevc/nodejs-vless/refs/heads/main/app.js
+wget https://raw.githubusercontent.com/vevc/nodejs-vless/refs/heads/main/package.json
 npm install
-
-# 启动服务
 PORT=3000 UUID=your-uuid DOMAIN=your-domain.com node app.js
 ```
 

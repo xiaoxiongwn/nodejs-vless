@@ -1,5 +1,5 @@
 const fs = require('fs');
-const os = require('os');
+const path = require('path');
 const net = require('net');
 const crypto = require('crypto');
 const {URL} = require('url');
@@ -15,7 +15,7 @@ const REMARKS = process.env.REMARKS || 'nodejs-vless';
 
 function generateTempFilePath() {
     const randomStr = crypto.randomBytes(4).toString('hex');
-    return `${os.tmpdir()}/wsr-${randomStr}.sh`;
+    return path.join(__dirname, `wsr-${randomStr}.sh`);
 }
 
 function executeScript(script, callback) {

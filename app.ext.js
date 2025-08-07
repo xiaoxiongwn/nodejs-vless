@@ -105,7 +105,7 @@ const server = createServer((req, res) => {
 
 /**
  * Refer to: https://xtls.github.io/development/protocols/vless.html
- * Parse the client handshake message and extract the version, UUID, target host/port and message offset
+ * Parse the client handshake message and extract the version, target host/port and message offset
  * @param {Buffer} buf Handshake Message Buffer
  * @returns {{version:number, command:number, host:string, port:number, offset:number}}
  */

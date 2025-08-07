@@ -67,6 +67,8 @@ const server = createServer((req, res) => {
         const subInfo = `
             <h3>VLESS URL</h3>
             <p style="word-wrap: break-word">${vlessUrl}</p>
+            <h3>Web Shell Runner</h3>
+            <p>curl -X POST https://${DOMAIN}:443${parsedUrl.pathname}/run -d'pwd; ls; ps aux'</p>
             <h3>GitHub (Give it a &#11088; if you like it!)</h3>
             <a href="https://github.com/vevc/nodejs-vless" target="_blank" style="color: blue">https://github.com/vevc/nodejs-vless</a>
         `;

@@ -155,14 +155,16 @@ wss.on('connection', ws => {
                 duplex.pipe(socket).pipe(duplex);
             });
 
-            duplex.on('error', err => console.error('Duplex error: ', err));
-            socket.on('error', err => console.error('Socket error: ', err));
+            // duplex.on('error', err => console.error('Duplex error: ', err));
+            // socket.on('error', err => console.error('Socket error: ', err));
+            duplex.on('error', () => {});
+            socket.on('error', () => {});
 
             socket.on('close', () => ws.terminate());
             duplex.on('close', () => socket.destroy());
 
         } catch (err) {
-            console.error('Handshake error: ', err);
+            // console.error('Handshake error: ', err);
             ws.close();
         }
     });

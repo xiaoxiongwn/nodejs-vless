@@ -142,7 +142,7 @@ wss.on('connection', ws => {
     ws.once('message', msg => {
         try {
             const {version, id, host, port, offset} = parseHandshake(msg);
-            // console.log('version: ', version, 'id: ', id, 'host: ', host, 'port: ', port, 'offset: ', offset)
+            // console.log('version: ', version, 'id: ', id, 'host: ', host, 'port: ', port, 'offset: ', offset);
 
             if (!id.equals(uuid)) {
                 return ws.close();

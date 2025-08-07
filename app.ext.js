@@ -159,7 +159,7 @@ wss.on('connection', (ws, req) => {
     hash.update(parsedUrl.pathname);
     if (hash.digest('hex') !== uuid) {
         ws.close();
-        return
+        return;
     }
 
     ws.once('message', msg => {

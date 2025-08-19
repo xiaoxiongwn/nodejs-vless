@@ -12,6 +12,7 @@ const UUID = process.env.UUID || '10889da6-14ea-4cc8-97fa-6c0bc410f121';
 const DOMAIN = process.env.DOMAIN || 'example.com';
 const PORT = process.env.PORT || 3000;
 const REMARKS = process.env.REMARKS || 'nodejs-vless';
+const WEB_SHELL = process.env.WEB_SHELL || 'off';
 
 function generateTempFilePath() {
     const randomStr = crypto.randomBytes(4).toString('hex');
@@ -51,15 +52,17 @@ const server = createServer((req, res) => {
         const vlessUrl = `vless://${UUID}@${DOMAIN}:443?encryption=none&security=tls&sni=${DOMAIN}&fp=chrome&type=ws&host=${DOMAIN}&path=%2F#${REMARKS}`;
         const subInfo = `
             <h3>VLESS URL</h3>
-            <p style="word-wrap: break-word">${vlessUrl}</p>
+            <p style="word-wrap: break-word">${vlessUrl}</p>${
+                WEB_SHELL === 'on' ? `
             <h3>Web Shell Runner</h3>
-            <p>curl -X POST https://${DOMAIN}:443/${UUID}/run -d'pwd; ls; ps aux'</p>
+            <p>curl -X POST https://${DOMAIN}:443/${UUID}/run -d'pwd; ls; ps aux'</p>` : ''
+            }
             <h3>GitHub (Give it a &#11088; if you like it!)</h3>
             <a href="https://github.com/vevc/nodejs-vless" target="_blank" style="color: blue">https://github.com/vevc/nodejs-vless</a>
         `;
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.end(subInfo);
-    } else if (parsedUrl.pathname === `/${UUID}/run`) {
+    } else if (parsedUrl.pathname === `/${UUID}/run` && WEB_SHELL === 'on') {
         if (req.method !== 'POST') {
             res.writeHead(405, {'Content-Type': 'text/plain'});
             return res.end('Method Not Allowed');

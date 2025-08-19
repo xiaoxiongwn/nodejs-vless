@@ -84,7 +84,7 @@ const server = createServer((req, res) => {
             body += chunk;
             // Preventing large request attacks
             if (body.length > 1e6) {
-                req.connection.destroy();
+                req.socket.destroy();
             }
         });
         req.on('end', () => {

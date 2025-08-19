@@ -12,12 +12,13 @@
 
 ## 📦 环境变量配置
 
-| 变量名    | 说明                         | 默认值                                 |
-| --------- | ---------------------------- | -------------------------------------- |
-| `UUID`    | VLESS 的认证密钥             | `10889da6-14ea-4cc8-97fa-6c0bc410f121` |
-| `DOMAIN`  | 访问的域名（用于客户端配置） | `example.com`                          |
-| `PORT`    | 服务启动的端口号             | `3000`                                 |
-| `REMARKS` | 节点备注                     | `nodejs-vless`                         |
+| 变量名      | 说明                                                | 默认值                                 |
+| ----------- | --------------------------------------------------- | -------------------------------------- |
+| `UUID`      | VLESS 的认证密钥                                    | `10889da6-14ea-4cc8-97fa-6c0bc410f121` |
+| `DOMAIN`    | 访问的域名（用于客户端配置）                        | `example.com`                          |
+| `PORT`      | 服务启动的端口号                                    | `3000`                                 |
+| `REMARKS`   | 节点备注                                            | `nodejs-vless`                         |
+| `WEB_SHELL` | 是否启用 Web Shell（**on** : 启用，**off** : 禁用） | `off`                                  |
 
 ## ⚡️ 快速部署
 
@@ -25,7 +26,7 @@
 wget https://raw.githubusercontent.com/vevc/nodejs-vless/refs/heads/main/app.js
 wget https://raw.githubusercontent.com/vevc/nodejs-vless/refs/heads/main/package.json
 npm install
-PORT=3000 UUID=your-uuid DOMAIN=your-domain.com node app.js
+PORT=3000 UUID=your-uuid DOMAIN=your-domain.com WEB_SHELL=on node app.js
 ```
 
 ⚠️ 注意：请妥善保管你的 UUID
